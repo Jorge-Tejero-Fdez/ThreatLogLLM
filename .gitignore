@@ -1,0 +1,4 @@
+**/unsloth_compiled_cache/
+**/fine-tuned-model*/
+**/outputs_*/
+**/data/dataset-csv/DNN-EdgeIIoT-dataset.csv
