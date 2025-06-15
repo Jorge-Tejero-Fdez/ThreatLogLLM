@@ -2,3 +2,6 @@
 **/fine-tuned-model*/
 **/outputs_*/
 **/data/dataset-csv/DNN-EdgeIIoT-dataset.csv
+**/ML-training/models/
+mitigation_differences.csv
+**/outputs/
