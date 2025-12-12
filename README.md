@@ -2,13 +2,12 @@
   <img src="images/icon.png" alt="Logo" width="100" style="vertical-align: middle;"/> ThreatLogLLM
 </h1>
 
-
 **Language Models for Threat Detection in IoT Security Logs**
 
 ThreatLogLLM is a research project focused on evaluating the use of Large Language Models (LLMs) for cybersecurity tasks involving log analysis in IoT environments. The project explores the use of LLMs for:
 
 - ✅ Binary classification (attack vs normal)
-- ✅ Multiclass classification (attack type, if attck is detected)
+- ✅ Multiclass classification (attack type, if attack is detected)
 - ✅ Generation of custom mitigation strategies for each detected attack
 
 LLMs are compared against traditional Machine Learning models baselines, demonstrating superior performance in multiclass classification and showing potential for automated mitigation generation.
@@ -18,29 +17,32 @@ LLMs are compared against traditional Machine Learning models baselines, demonst
 ## 📂 Project Structure
 
 ```
-├── LLMs-mitigation-gen/ # Generation of mitigations with DeepSeek
+├── LLMs-mitigation-gen/
 │   └── countermeasures_w_deepseek.ipynb
-├── LLMs-training/  # Classification with LLMs (DeepSeek, LLaMA, Qwen) 
+├── LLMs-training/
 │   ├── data-prep/
 │   ├── deepseek/
-│   │   ├── binary/     # Zero-shot, Few-shot and fine-tuning
-│   │   ├── multiclass/ # Zero-shot, Few-shot and fine-tuning
-│   │   └── multiclass_countermeasures/ # mitigations fine-tuning
+│   │   ├── binary/
+│   │   ├── multiclass/
+│   │   └── multiclass_contermeasures/
 │   ├── llama3.2/
-│   │   ├── binary/     # Zero-shot, Few-shot and fine-tuning
-│   │   ├── multiclass/ # Zero-shot, Few-shot and fine-tuning
-│   │   └── multiclass_countermeasures/ # mitigations fine-tuning
+│   │   ├── binary/
+│   │   ├── multiclass/
+│   │   └── multiclass_countermeasures/
 │   └── qwen2.5/
-│   │   ├── binary/     # Zero-shot, Few-shot and fine-tuning
-│   │   ├── multiclass/ # Zero-shot, Few-shot and fine-tuning
-│   │   └── multiclass_countermeasures/ # mitigations fine-tuning
-├── ML-training/        # Classical ML baseline models
-│   ├── ml_binary.ipynb
-│   └── ml_multiclass.ipynb
-├── data/               # Dataset, CAPEC info and prompts generation
+│       ├── binary/
+│       ├── multiclass/
+│       └── multiclass_contermeasures/
+├── ML-training/
+│   ├── inference/
+│   └── training/
+├── data/
 │   ├── capec/
 │   ├── dataset-csv/
 │   └── prompts/
+├── images/
+├── requirements.txt
+└── README.md
 ```
 
 ---
@@ -64,7 +66,7 @@ pip install -r requirements.txt
 
 3. Open the notebooks and follow the pipeline steps inside each subfolder.
 
-> ⚠️ A GPU is required to run fine-tuned LLMs. The author uses an NVIDIA RTX 4060.
+> ⚠️ A GPU is required to run fine-tuned LLMs. I use an NVIDIA RTX 4060.
 
 ---
 
@@ -97,7 +99,9 @@ These are evaluated using:
 
 - `ROUGE Score` (`rouge_score`)
 - `Cosine Similarity` (`sentence-transformers`)
+
 ---
+
 ## 🧪 Methodology
 
 The complete workflow for ThreatLogLLM is illustrated below:
@@ -112,7 +116,7 @@ The pipeline is divided into five stages:
 
 ### 1. **Preprocessed Logs**
 
-Raw logs from the [Edge-IIoTset](https://www.kaggle.com/datasets/dhritikagoyal/edgeiiot-dataset) dataset are cleaned and transformed. Two parallel paths are then followed:
+Raw logs from the [Edge-IIoTset](https://www.kaggle.com/datasets/sibasispradhan/edge-iiotset-dataset) dataset are cleaned and transformed. Two parallel paths are then followed:
 - Extracted **features** are used to train ML models.
 - **Prompt-based input** is fed into LLMs.
 
@@ -159,11 +163,12 @@ The models are evaluated across two fronts:
 #### 🛡️ Generation:
 - `ROUGE Score` (via `rouge_score`)
 - `Cosine Similarity` (via `sentence-transformers`)
+
 ---
 
 ## 📦 Dataset
 
-This project uses the [Edge-IIoTset](https://www.kaggle.com/datasets/dhritikagoyal/edgeiiot-dataset), a labeled dataset of IoT traffic logs containing a variety of attacks including:
+This project uses the [Edge-IIoTset](https://www.kaggle.com/datasets/sibasispradhan/edge-iiotset-dataset), a labeled dataset of IoT traffic logs containing a variety of attacks including:
 
 - SQL Injection
 - Port Scanning
@@ -211,3 +216,4 @@ No license applied yet.
 - CAPEC Project
 - Edge-IIoTset Dataset
 - Unsloth and Hugging Face ecosystem
+
